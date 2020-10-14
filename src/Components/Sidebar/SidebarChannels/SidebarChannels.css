@@ -1,0 +1,121 @@
+.sidebarChannels {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  min-width: 300px;
+  height: 100vh;
+  background-color: #2f3135;
+}
+
+.sidebarChannels__server {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px;
+  min-height: 70px;
+  background-color: #2f3135;
+  color: white;
+  border-bottom: 3px solid #26282c;
+}
+
+.sidebarChannels__channels {
+  flex: 1;
+  padding: 0 15px;
+}
+#channelsList {
+  overflow-x: hidden;
+  overflow-y: overlay;
+}
+.sidebar__channelsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5px 15px 0;
+  background-color: #2f3135;
+  color: gray;
+  cursor: pointer;
+  transition: 100ms ease-in-out;
+}
+.sidebar__channelsHeader:hover .sidebar__header {
+  color: white;
+}
+.sidebar__header {
+  display: flex;
+}
+.sidebar__addChannel {
+  cursor: pointer;
+}
+.sidebar__addChannel:hover {
+  color: white;
+}
+.sidebar__channelsList {
+  flex: 1;
+}
+
+.sidebar__voice,
+.sidebar__profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid gray;
+  background-color: #2f3135;
+  color: gray;
+}
+.sidebar__profile > .MuiAvatar-root {
+  width: 30px !important;
+  height: 30px !important;
+  cursor: pointer;
+}
+.sidebar__voiceInfo {
+  flex: 1;
+  padding: 0 10px;
+}
+.sidebar__voiceInfo > h3 {
+  font-size: 14px;
+  color: #4fb185;
+}
+.sidebar__voiceInfo > p {
+  font-size: 12px;
+}
+.sidebar__voiceIcon {
+  color: #4fb185;
+}
+.sidebar__voiceIcons,
+.sidebar__profileIcons {
+  display: flex;
+  align-items: center;
+}
+.sidebar__voiceIcons > .MuiSvgIcon-root,
+.sidebar__profileIcons > .MuiSvgIcon-root {
+  font-size: 1.3rem !important;
+  padding: 10px;
+}
+
+.sidebar__profileInfo {
+  flex: 1;
+  padding: 0 10px;
+}
+.sidebar__profileInfo > h3 {
+  font-size: 14px;
+  color: white;
+}
+.sidebar__profileInfo > p {
+  font-size: 12px;
+}
+
+#channelsList::-webkit-scrollbar {
+  width: 5px;
+}
+#channelsList::-webkit-scrollbar-track {
+  background: transparent;
+}
+#channelsList::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 999px;
+}
+#channelsList:hover::-webkit-scrollbar-thumb {
+  background-color: #242526;
+}

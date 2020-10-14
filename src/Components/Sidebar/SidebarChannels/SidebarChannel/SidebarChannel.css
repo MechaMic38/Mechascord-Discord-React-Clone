@@ -1,0 +1,20 @@
+.sidebarChannel > h5 {
+  display: flex;
+  align-items: center;
+
+  padding: 10px 5px 10px 15px;
+  border-radius: 5px;
+
+  background-color: #2f3135;
+  color: gray;
+  cursor: pointer;
+  transition: 100ms ease-in-out;
+}
+.sidebarChannel:hover > h5 {
+  color: white;
+  background-color: #40464b;
+}
+.sidebarChannel__hash {
+  font-size: 20px;
+  padding-right: 8px;
+}

@@ -1,0 +1,43 @@
+.chatUsers {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  min-width: 250px;
+  max-width: 250px;
+  padding: 20px 15px;
+  border-radius: 5px;
+
+  background-color: #2f3135;
+}
+
+.chatUsers__group {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  margin-bottom: 20px;
+}
+.chatUsers__group > h6 {
+  color: gray;
+  text-transform: uppercase;
+}
+
+#usersList {
+  overflow-x: hidden;
+  overflow-y: overlay;
+}
+
+#usersList::-webkit-scrollbar {
+  width: 5px;
+}
+#usersList::-webkit-scrollbar-track {
+  background: transparent;
+}
+#usersList::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 999px;
+}
+#usersList:hover::-webkit-scrollbar-thumb {
+  background-color: #242526;
+}

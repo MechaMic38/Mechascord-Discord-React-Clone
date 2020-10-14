@@ -1,0 +1,11 @@
+.sidebarServer {
+  margin-bottom: 10px;
+}
+.sidebarServer > .MuiAvatar-root {
+  width: 50px !important;
+  height: 50px !important;
+  cursor: pointer;
+}
+.sidebarServer:hover > .MuiAvatar-root {
+  border-radius: 15px;
+}

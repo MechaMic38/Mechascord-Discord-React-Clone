@@ -1,0 +1,23 @@
+.chatUser {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 100ms ease-in-out;
+}
+.chatUser > h4 {
+  font-weight: 600;
+  color: gray;
+}
+.chatUser:hover {
+  background-color: #40464b;
+}
+.chatUser:hover > h4 {
+  color: white;
+}
+.chatUser > .MuiAvatar-root {
+  width: 32px !important;
+  height: 32px !important;
+  margin-right: 10px;
+}

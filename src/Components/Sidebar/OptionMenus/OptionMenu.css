@@ -1,0 +1,25 @@
+.sidebarChannels__serverOptions {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 110%;
+  left: 50%;
+
+  border-radius: 10px;
+  width: 95%;
+  height: fit-content;
+
+  background-color: #242526;
+}
+.serverOptions__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 5px;
+  color: gray;
+  cursor: pointer;
+}
+.serverOptions__option > .MuiSvgIcon-root {
+  font-size: 1.3rem !important;
+}

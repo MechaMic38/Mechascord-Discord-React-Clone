@@ -1,56 +1,78 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import "./CSS/App.css";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import Sidebar from "./Components/Sidebar/Sidebar";
+import Chat from "./Components/Chat/Chat";
+import Login from "./Components/Login/Login";
+import CreateServerModal from "./Components/Modals/CreateServerModal/CreateServerModal";
+import FindServerModal from "./Components/Modals/FindServerModal/FindServerModal";
+
+import { login, logout, selectUser } from "./Redux/userSlice";
+import db, { auth } from "./firebase";
+import { selectCSModalView, selectFSModalView } from "./Redux/appSlice";
+import { userDBModel } from "./utils/dataModels";
 
 function App() {
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+  const isCSModalVisible = useSelector(selectCSModalView);
+  const isFSModalVisible = useSelector(selectFSModalView);
+
+  /*============================================================
+    Checks if user is already authenticated or not
+    Also checks if user has already been insterted into DB, if
+    not, adds it in*/
+  useEffect(() => {
+    auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        let user = {
+          uid: authUser.uid,
+          photoURL: authUser.photoURL,
+          email: authUser.email,
+          displayName: authUser.displayName,
+        };
+
+        let userRef = db.collection("users").doc(authUser.uid);
+
+        userRef.get().then((doc) => {
+          if (!doc.exists) {
+            userRef.set(userDBModel(user));
+            userRef.get().then((doc) => {
+              dispatch(
+                login({
+                  userData: doc.data().user,
+                  joinedServers: doc.data().joinedServers,
+                })
+              );
+            });
+          } else {
+            dispatch(
+              login({
+                userData: doc.data().user,
+                joinedServers: doc.data().joinedServers,
+              })
+            );
+          }
+        });
+      } else {
+        dispatch(logout());
+      }
+    });
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+    <div className="app">
+      {user ? (
+        <>
+          <Sidebar />
+          <Chat />
+          <CreateServerModal isModalVisible={isCSModalVisible} />
+          <FindServerModal isModalVisible={isFSModalVisible} />
+        </>
+      ) : (
+        <Login />
+      )}
     </div>
   );
 }

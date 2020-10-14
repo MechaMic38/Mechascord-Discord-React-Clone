@@ -1,0 +1,109 @@
+.createServerModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.createServerModal > form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 20px;
+  padding: 40px 20px;
+  height: fit-content;
+  width: 400px;
+
+  background-color: #363a3f;
+  box-shadow: 0 10px 7px -7px rgba(0, 0, 0, 0.75);
+}
+
+form > .createServerModal__title {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: white;
+}
+form > .createServerModal__divider {
+  height: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 2px 0 0;
+  margin: 20px 0;
+}
+form > p {
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  color: grey;
+}
+form > .createServerModal__serverName {
+  width: 100%;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 999px;
+  outline-width: 0;
+
+  transition: box-shadow 100ms ease-in-out;
+  color: grey;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+form > .createServerModal__serverName:focus {
+  box-shadow: inset 0 0 4px rgba(79, 177, 133, 0.5);
+}
+form > .createServerModal__fileSelector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 999px;
+  font-size: 13px;
+
+  transition: 100ms ease-in-out;
+  color: grey;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+form > .createServerModal__fileSelector > .MuiSvgIcon-root {
+  font-size: 1.3rem !important;
+}
+.createServerModal__fileSelector--error {
+  background-color: rgba(114, 40, 40, 0.75) !important;
+}
+form > .createServerModal__serverImg {
+  height: 0;
+  width: 0;
+  background-color: transparent;
+  color: transparent;
+  border: none;
+}
+form > input#serverName {
+  margin-bottom: 20px;
+}
+form > button {
+  width: 100%;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 999px;
+  outline-width: 0;
+
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+
+  transition: 100ms ease-in-out;
+  cursor: pointer;
+  background-color: rgba(79, 177, 133, 1);
+}
+form > button:disabled {
+  color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(79, 177, 133, 0.2);
+}

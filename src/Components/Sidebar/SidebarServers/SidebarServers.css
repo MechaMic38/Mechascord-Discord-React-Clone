@@ -1,0 +1,60 @@
+.sidebarServers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 20px 10px;
+  width: 100%;
+  max-width: 70px;
+  height: 100vh;
+
+  background-color: #18191b;
+}
+#serverList {
+  overflow-x: hidden;
+  overflow-y: overlay;
+}
+
+.sidebarServers__addServer {
+  margin-bottom: 10px;
+}
+.sidebarServers__addServer,
+.sidebarServers__findServer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  min-height: 50px;
+
+  cursor: pointer;
+  transition: 100ms ease-in-out;
+  transform-origin: center center;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.sidebarServers__addServer:hover,
+.sidebarServers__findServer:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 7px 7px -7px rgba(0, 0, 0, 0.75);
+  border-radius: 15px;
+}
+.sidebarServers__addServer > .MuiSvgIcon-root,
+.sidebarServers__findServer > .MuiSvgIcon-root {
+  color: #4fb185;
+}
+
+#serverList::-webkit-scrollbar {
+  width: 5px;
+}
+#serverList::-webkit-scrollbar-track {
+  background: transparent;
+}
+#serverList::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 999px;
+}
+#serverList:hover::-webkit-scrollbar-thumb {
+  background-color: #242526;
+}

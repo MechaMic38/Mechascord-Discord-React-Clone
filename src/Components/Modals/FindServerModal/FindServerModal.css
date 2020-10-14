@@ -1,0 +1,66 @@
+.findServerModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.findServerModal__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 20px;
+  padding: 40px 20px;
+  height: 90%;
+  width: 800px;
+
+  background-color: #363a3f;
+  box-shadow: 0 10px 7px -7px rgba(0, 0, 0, 0.75);
+}
+.findServerModal__title {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: white;
+}
+
+.findServerModal__wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  width: 100%;
+  margin-top: 40px;
+  padding: 20px;
+  border-radius: 5px;
+
+  background-color: rgba(0, 0, 0, 0.1);
+}
+#serverWrapper {
+  overflow-x: hidden;
+  overflow-y: overlay;
+}
+
+#serverWrapper::-webkit-scrollbar {
+  width: 5px;
+}
+#serverWrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+#serverWrapper::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 999px;
+}
+#serverWrapper:hover::-webkit-scrollbar-thumb {
+  background-color: #242526;
+}
