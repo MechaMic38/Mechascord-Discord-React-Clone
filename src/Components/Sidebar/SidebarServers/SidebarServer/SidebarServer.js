@@ -26,6 +26,7 @@ function SidebarServer({ serverId, serverName, serverImg, serverOwner }) {
             setServerInfo({
               serverId,
               serverName,
+              serverOwner,
             })
           );
           dispatch(

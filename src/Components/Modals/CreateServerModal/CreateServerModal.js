@@ -19,7 +19,7 @@ function CreateServerModal({ isModalVisible }) {
   const [image, setImage] = useState(null);
   const [error, setError] = useState(null);
 
-  const { userData, joinedServers } = user;
+  const { userData, joinedServers, ownedServers } = user;
   const types = ["image/png", "image/jpeg", "image/gif"];
 
   /*============================================================
@@ -27,8 +27,19 @@ function CreateServerModal({ isModalVisible }) {
   const handleAddServer = (e) => {
     e.preventDefault();
 
+    if (ownedServers.length >= 3) {
+      alert("You have already created your maximum number of servers...");
+      return;
+    } else if (joinedServers.length >= 10) {
+      alert("You have already joined your maximum number of servers...");
+      return;
+    }
+
+    const serverRef = db.collection("servers").doc();
+    const serverId = serverRef.id;
+
     const uploadServerImg = () => {
-      const storageRef = storage.ref(`logos/${image.name}`);
+      const storageRef = storage.ref(`${serverId}/logo/${image.name}`);
 
       storageRef.put(image).on(
         "state_changed",
@@ -46,8 +57,11 @@ function CreateServerModal({ isModalVisible }) {
 
     const createNewServer = (url) => {
       if (url) {
-        db.collection("servers")
-          .add(serverModel(serverName, url, userData))
+        const serverRef = db.collection("servers").doc(serverId);
+
+        serverRef.set(serverModel(serverName, url, userData));
+        serverRef
+          .get()
           .then((server) => {
             if (server.id) {
               const userServerRef = db
@@ -63,15 +77,18 @@ function CreateServerModal({ isModalVisible }) {
                     userServerRef.set(userModel(userData, "admin")).then(() => {
                       const userRef = db.collection("users").doc(userData.uid);
                       let serverList = [...joinedServers, server.id];
+                      let ownedServerList = [...ownedServers, server.id];
 
                       userRef.update({
                         joinedServers: serverList,
+                        ownedServers: ownedServerList,
                       });
 
                       dispatch(
                         updateUser({
                           ...user,
                           joinedServers: serverList,
+                          ownedServers: ownedServerList,
                         })
                       );
                     });
@@ -129,6 +146,9 @@ function CreateServerModal({ isModalVisible }) {
     >
       <form>
         <h2 className="createServerModal__title">Create your Server</h2>
+        <h6 className="createServerModal__subtitle">
+          You can create up to 3 servers
+        </h6>
 
         <div className="createServerModal__divider" />
 
@@ -138,6 +158,8 @@ function CreateServerModal({ isModalVisible }) {
           className="createServerModal__serverName"
           type="text"
           placeholder={`${userData.displayName}'s Server`}
+          minLength={3}
+          maxLength={30}
           value={serverName}
           onChange={(e) => setServerName(e.target.value)}
         />
@@ -165,7 +187,7 @@ function CreateServerModal({ isModalVisible }) {
         <button
           type="submit"
           onClick={handleAddServer}
-          disabled={!image || !serverName || error}
+          disabled={!image || !serverName || !serverName.length > 30 || error}
         >
           Create New Server
         </button>
