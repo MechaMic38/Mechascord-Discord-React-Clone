@@ -48,6 +48,9 @@ function FindServerModal({ isModalVisible }) {
     >
       <div className="findServerModal__container">
         <h2 className="findServerModal__title">Find a Server</h2>
+        <h6 className="findServerModal__subtitle">
+          You can join up to 10 servers
+        </h6>
 
         <div id="serverWrapper" className="findServerModal__wrapper">
           {servers.map(function (server) {

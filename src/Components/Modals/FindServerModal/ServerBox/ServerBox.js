@@ -16,6 +16,11 @@ function ServerBox({ server }) {
     const userRef = db.collection("users").doc(userData.uid);
 
     if (!joinedServers.includes(serverId)) {
+      if (joinedServers.length >= 10) {
+        alert("You have already joined your maximum number of servers...");
+        return;
+      }
+
       let serverList = [...joinedServers, serverId];
       userRef
         .update({
