@@ -17,7 +17,11 @@ import { Avatar } from "@material-ui/core";
 import db, { auth } from "../../../firebase";
 import { selectUser } from "../../../Redux/userSlice";
 import { useSelector } from "react-redux";
-import { selectServerId, selectServerName } from "../../../Redux/appSlice";
+import {
+  selectServerId,
+  selectServerName,
+  selectServerOwner,
+} from "../../../Redux/appSlice";
 import { truncate } from "../../../utils/utils";
 import { motion } from "framer-motion";
 import { channelModel } from "../../../utils/dataModels";
@@ -26,6 +30,7 @@ function SidebarChannels() {
   const user = useSelector(selectUser);
   const serverId = useSelector(selectServerId);
   const serverName = useSelector(selectServerName);
+  const serverOwner = useSelector(selectServerOwner);
 
   const [channels, setChannels] = useState([]);
   const [optionMenuVisible, setOptionMenuVisible] = useState(false);
@@ -54,18 +59,23 @@ function SidebarChannels() {
     Adds a channel to channels list */
   const handleAddChannel = () => {
     const channelName = prompt("Enter a new channel name");
-    if (channelName) {
-      db.collection("servers")
-        .doc(serverId)
-        .collection("channels")
-        .add(channelModel(channelName));
+    if (channelName.length >= 3 && channelName.length <= 30) {
+      if (userData?.uid === serverOwner?.uid) {
+        db.collection("servers")
+          .doc(serverId)
+          .collection("channels")
+          .add(channelModel(channelName));
+      }
+    } else {
+      alert("Sorry, the channel name length must be between 3-30 in length...");
     }
   };
 
   /*============================================================
     Opens Option Menu */
   const toggleOptionMenu = () => {
-    if (serverId) setOptionMenuVisible(!optionMenuVisible);
+    if (serverId && userData?.uid === serverOwner?.uid)
+      setOptionMenuVisible(!optionMenuVisible);
   };
 
   return (
@@ -89,10 +99,12 @@ function SidebarChannels() {
             <h4>Text Channels</h4>
           </div>
 
-          <AddIcon
-            onClick={serverId && handleAddChannel}
-            className="sidebar__addChannel"
-          />
+          {userData?.uid === serverOwner?.uid && (
+            <AddIcon
+              onClick={serverId && handleAddChannel}
+              className="sidebar__addChannel"
+            />
+          )}
         </div>
 
         <div className="sidebar__channelsList">
