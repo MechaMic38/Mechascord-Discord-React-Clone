@@ -5,6 +5,7 @@ export const appSlice = createSlice({
   initialState: {
     serverId: null,
     serverName: null,
+    serverOwner: null,
     channelId: null,
     channelName: null,
     isCSModalVisible: false, //Create Server Modal
@@ -14,6 +15,7 @@ export const appSlice = createSlice({
     setServerInfo: (state, action) => {
       state.serverId = action.payload.serverId;
       state.serverName = action.payload.serverName;
+      state.serverOwner = action.payload.serverOwner;
     },
     setChannelInfo: (state, action) => {
       state.channelId = action.payload.channelId;
@@ -37,6 +39,7 @@ export const {
 
 export const selectServerId = (state) => state.app.serverId;
 export const selectServerName = (state) => state.app.serverName;
+export const selectServerOwner = (state) => state.app.serverOwner;
 export const selectChannelId = (state) => state.app.channelId;
 export const selectChannelName = (state) => state.app.channelName;
 export const selectCSModalView = (state) => state.app.isCSModalVisible;

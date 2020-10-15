@@ -16,7 +16,7 @@ function ChatHeader({ channelName }) {
       <div className="chatHeader__left">
         <h3>
           <span className="chatHeader__hash">{channelName && "#"}</span>
-          {truncate(channelName, 50)}
+          {truncate(channelName, 30)}
         </h3>
       </div>
 

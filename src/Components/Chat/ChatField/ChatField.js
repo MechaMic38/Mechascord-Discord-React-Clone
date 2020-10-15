@@ -66,6 +66,7 @@ function ChatField({ messages, user, serverId, channelId, channelName }) {
                 ? `Send a message in #${channelName}`
                 : `Select a Server and a Channel to start`
             }
+            maxLength={2000}
           />
           <button
             className="chatField__inputButton"
