@@ -32,6 +32,13 @@ form > .createServerModal__title {
   font-weight: 700;
   color: white;
 }
+form > .createServerModal__subtitle {
+  margin-top: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: gray;
+}
 form > .createServerModal__divider {
   height: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
