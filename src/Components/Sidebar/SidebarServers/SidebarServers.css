@@ -15,7 +15,8 @@
   overflow-y: overlay;
 }
 
-.sidebarServers__addServer {
+.sidebarServers__addServer,
+.sidebarServers__findServer {
   margin-bottom: 10px;
 }
 .sidebarServers__addServer,
@@ -43,6 +44,21 @@
 .sidebarServers__addServer > .MuiSvgIcon-root,
 .sidebarServers__findServer > .MuiSvgIcon-root {
   color: #4fb185;
+}
+
+.sidebarServers__visitMe > .MuiAvatar-root {
+  width: 50px !important;
+  height: 50px !important;
+
+  transition: 100ms ease-in-out;
+  transform-origin: center center;
+  cursor: pointer;
+}
+.sidebarServers__visitMe:hover {
+  transform: scale(1.05);
+}
+.sidebarServers__visitMe:hover > .MuiAvatar-root {
+  border-radius: 15px;
 }
 
 #serverList::-webkit-scrollbar {
