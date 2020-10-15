@@ -43,6 +43,7 @@ function App() {
                 login({
                   userData: doc.data().user,
                   joinedServers: doc.data().joinedServers,
+                  ownedServers: doc.data().ownedServers,
                 })
               );
             });
@@ -51,6 +52,7 @@ function App() {
               login({
                 userData: doc.data().user,
                 joinedServers: doc.data().joinedServers,
+                ownedServers: doc.data().ownedServers,
               })
             );
           }
