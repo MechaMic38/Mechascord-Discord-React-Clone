@@ -32,12 +32,14 @@ export const userModel = (
 export const userDBModel = (
   user,
   createdAt = firebase.firestore.FieldValue.serverTimestamp(),
-  joinedServers = []
+  joinedServers = [],
+  ownedServers = []
 ) => {
   return {
     user,
     createdAt,
     joinedServers,
+    ownedServers,
   };
 };
 
